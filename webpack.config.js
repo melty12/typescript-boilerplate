@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: "development",
@@ -16,6 +17,22 @@ module.exports = {
       {
         test: /\.ts$/,
         use: "ts-loader"
+      },
+      {
+        test: /\.scss$/,
+        use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                // options...
+              }
+            }
+          ]
       }
     ]
   },
@@ -29,5 +46,10 @@ module.exports = {
     watchContentBase: true,
     port: 8080
   },
-  devtool: "inline-source-map"
+  devtool: "inline-source-map",
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/styles.css'
+    }),
+  ]
 };
