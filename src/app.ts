@@ -23,7 +23,8 @@ export class App {
   mount() {
     const formElement: HTMLElement | null = document.querySelector("#js-form");
     const inputElement: HTMLInputElement | null = document.querySelector("#js-form-input");
-    const containerElement: HTMLElement | null = document.querySelector("#js-todo-list");
+    const containerElement: HTMLElement
+     | null = document.querySelector("#js-todo-list");
 
     this.todoListModel.onChange(() => {
       const todoItems = this.todoListModel.getTodoItems();
